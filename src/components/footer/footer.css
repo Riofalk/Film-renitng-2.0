@@ -1,0 +1,12 @@
+.footer-container {
+    background-color: var(--dark-button);
+    width: 100vw;
+    height: 100px;
+    bottom: 0;
+    position: fixed;
+    color: var(--bright-text);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5vw 1rem;
+    align-items: flex-end;
+}

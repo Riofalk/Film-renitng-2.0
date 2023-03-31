@@ -1,0 +1,13 @@
+:root {
+  background-color: #d9d9d9;
+  --bright-text: #ffffff;
+  --dark-button: #363636;
+  --red-button: #c93333;
+  --dark-text: #000000;
+  --background-color: #d9d9d9;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}

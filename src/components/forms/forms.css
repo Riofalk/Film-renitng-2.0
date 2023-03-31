@@ -1,0 +1,70 @@
+.register-container,
+.sign-in-container {
+  background-color: var(--bright-text);
+  padding: 2em 2em;
+  border-radius: 2em;
+  width: 300px;
+}
+
+input {
+  width: 100%;
+  background-color: var(--background-color);
+  border: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+
+label,
+.main-input {
+  display: block;
+}
+
+.main-input {
+  height: 2em;
+  padding: 0.5em;
+}
+
+label {
+  margin-bottom: 20px;
+}
+
+.register,
+.sign-in {
+  background-color: var(--dark-button);
+  color: var(--bright-text);
+  width: 200px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 2em;
+  padding: 1em;
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.error-message {
+  display: flex;
+  justify-content: center;
+  background: rgba(255,0,0,0.5);
+  padding: 5px;
+  margin: 10px 0px;
+  border-radius: 5px;
+}
+
+.required:before {
+  content: "*";
+  color: red;
+}
+
