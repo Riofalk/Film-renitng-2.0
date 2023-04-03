@@ -4,7 +4,13 @@ import { useState, useEffect } from "react";
 
 function RegisterForm() {
   const [error, setError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState()
+  const [errorMessage, setErrorMessage] = useState();
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailAgain, setEmailAgain] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
   const navigate = useNavigate();
 
   const redirect = () => {
@@ -13,13 +19,6 @@ function RegisterForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    let name = e.target.name.value.toLowerCase();
-    let surname = e.target.surname.value.toLowerCase();
-    let email = e.target.email.value;
-    let emailAgain = e.target.emailAgain.value;
-    let password = e.target.password.value;
-    let passwordAgain = e.target.passwordAgain.value;
 
     let allUsers =
       JSON.parse(localStorage.getItem("users")) == null
@@ -35,44 +34,44 @@ function RegisterForm() {
     };
 
     if (name.length < 2) {
-      setError(true)
+      setError(true);
       setErrorMessage("Invalid name");
       return;
     }
 
     if (surname.length < 2 && surname.length !== 0) {
-      setError(true)
+      setError(true);
       setErrorMessage("Invalid surname");
       return;
     }
 
     if (allUsers?.find((e) => e.email === email)) {
-      setError(true)
+      setError(true);
       setErrorMessage("Email is already taken");
       return;
     }
 
     if (!email) {
-      setError(true)
+      setError(true);
       setErrorMessage("Email is required");
       return;
     }
 
     if (!(emailAgain === email)) {
-      console.log("hello")
-      setError(true)
+      console.log("hello");
+      setError(true);
       setErrorMessage("Emails aren't matching");
       return;
     }
 
     if (!password || password.length < 6) {
-      setError(true)
+      setError(true);
       setErrorMessage("Invalid password/ Password is required");
       return;
     }
 
     if (password !== passwordAgain) {
-      setError(true)
+      setError(true);
       setErrorMessage("Passwords don't match");
       return;
     }
@@ -93,6 +92,8 @@ function RegisterForm() {
             type="text"
             name="name"
             placeholder="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label htmlFor="surname">
@@ -102,6 +103,8 @@ function RegisterForm() {
             type="text"
             name="surname"
             placeholder="Surname"
+            value={surname}
+            onChange={(e) => setSurname(e.target.value)}
           />
         </label>
         <label htmlFor="email" className="required">
@@ -111,6 +114,8 @@ function RegisterForm() {
             type="email"
             name="email"
             placeholder="email@accenture.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
         <label htmlFor="emailAgain" className="required">
@@ -120,16 +125,30 @@ function RegisterForm() {
             type="email"
             name="emailAgain"
             placeholder="email@accenture.com"
+            value={emailAgain}
+            onChange={(e) => setEmailAgain(e.target.value)}
           />
         </label>
 
         <label htmlFor="password" className="required">
           Password
-          <input className="main-input" type="password" name="password" />
+          <input
+            className="main-input"
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
         <label htmlFor="passwordAgain" className="required">
           Password again
-          <input className="main-input" type="password" name="passwordAgain" />
+          <input
+            className="main-input"
+            type="password"
+            name="passwordAgain"
+            value={passwordAgain}
+            onChange={(e) => setPasswordAgain(e.target.value)}
+          />
         </label>
         {error && <p className="error-message">{errorMessage}</p>}
         <div className="button-container">

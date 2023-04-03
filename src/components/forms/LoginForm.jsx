@@ -4,7 +4,9 @@ import "./forms.css";
 
 function LoginForm() {
   const navigate = useNavigate();
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const redirect = () => {
     navigate("/home");
@@ -12,16 +14,14 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let email = e.target.email.value;
-    let password = e.target.password.value;
     let allUsers = JSON.parse(localStorage.getItem("users"));
 
     let foundUser = allUsers.find((user) => user.email === email);
     if (foundUser !== undefined && foundUser.password === password) {
       localStorage.setItem("currentUser", JSON.stringify(foundUser));
     } else {
-      setError(true)
-      return
+      setError(true);
+      return;
     }
     redirect();
   };
@@ -36,12 +36,20 @@ function LoginForm() {
             type="email"
             name="email"
             placeholder="email@accenture.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </label>
 
         <label htmlFor="password">
           Password
-          <input className="main-input" type="password" name="password" />
+          <input
+            className="main-input"
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </label>
         {error && <p className="error-message">Wrong email or password</p>}
         <div className="button-container">
